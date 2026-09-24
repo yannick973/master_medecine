@@ -93,3 +93,18 @@ for (i in 1:10) {
 multi
 
 #blabla pour tester des choses notamment avec git
+
+
+#ici extraits du td2 de stats inférentielles
+dbinom(0, size = 7, prob = 0.125)
+pnorm(0.4225, mean = 0.4, sd = 0.05)
+dbinom(2, size = 5, prob = 0.90) # calcule la proba pour X =2 
+pnorm(0.4225, mean = 0.4, sd = 0.05)
+pbinom(2, size = 5, prob = 0.90) # calcule la proba pour X <=2 
+pnorm(2.5) - pnorm(-3)
+p <- 1 - pnorm(2.5)
+(1 - p)^9 * p
+lambda <- 25000 / 6000
+dpois(0, lambda)
+ppois(1, lambda = 25000 / 6000)
+pnorm(1.453)- pnorm(-1.453)
