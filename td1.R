@@ -108,3 +108,149 @@ lambda <- 25000 / 6000
 dpois(0, lambda)
 ppois(1, lambda = 25000 / 6000)
 pnorm(1.453)- pnorm(-1.453)
+
+
+##### tp1 : rcmdr sans Rcmdr #############
+install.packages("Rcmdr")
+library(Rcmdr)
+
+#exercice1
+x<-c(0,1) 
+fct_proba <- dbinom(x,1,0.5)
+plot(x,fct_proba,lwd=5,type="h",xlim=c(-0.5,1.2),ylim=c(0,0.7))
+
+rbinom(100, size = 1, prob = 0.5)#tirage aleatoire de 100valeurs utilisant cette loi de proba
+
+curve(pbinom(x, size = 1, prob = 0.5),
+      from = -1,
+      to = 2,
+      lwd=3,
+      n = 1000,
+      xlab = "x",
+      ylab = "F(x)",
+      main = "Fonction de répartition de B(1/2)")
+Ech_bernoulli<- rbinom(100, size = 1, prob = 0.5)
+table(Ech_bernoulli)
+
+#exercice2
+
+i <- 0:5
+proba <- dbinom(i, size = 5, prob = 0.5)
+plot(i, proba,
+     type = "h",
+     lwd = 4,
+     xlab = "i",
+     ylab = "P(Y = i)",
+     main = "Loi binomiale B(5, 1/2)")
+curve(pbinom(x, size = 5, prob = 0.5),
+      from = -1,
+      to = 6,
+      lwd=3,
+      n = 1000,
+      xlab = "x",
+      ylab = "F(x)",
+      main = "Fonction de répartition de Y")
+ech <- rbinom(50, size = 5, prob = 0.5)
+ech <- c(ech, mean(ech))
+ech_binomial <- ech
+plot(ech_binomial)
+table(ech_binomial)
+
+#loi_de_poisson
+z <- 0:5
+p <- dpois(z, lambda = 3)
+plot(z, p,
+     type = "h",
+     lwd = 3,
+     xlab = "z",
+     ylab = "P(Z = z)",
+     main = "Loi de Poisson P(3)")
+ppois(0:5, lambda = 3)
+curve(ppois(x, lambda = 3),
+      from = 0,
+      to = 15,
+      n = 1000,
+      lwd=3,
+      xlab = "z",
+      ylab = "F(z)",
+      main = "Fonction de répartition de Z")
+ech <- rpois(30, lambda = 3)
+ech <- c(ech, mean(ech))
+ech_poisson <- ech
+
+#exo4 loi_normale_standard
+
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -4,
+      to = 4,
+      n = 1000,
+      lwd = 3,
+      xlab = "x",
+      ylab = "f(x)",
+      main = "Loi normale standard N(0,1)")
+curve(pnorm(x, mean = 0, sd = 1),
+      from = -4,
+      to = 4,
+      n = 1000,
+      lwd = 3,
+      xlab = "x",
+      ylab = "F(x)",
+      main = "Fonction de répartition de N(0,1)")
+pnorm(c(0, 0.5, 1), mean = 0, sd = 1)
+ech <- rnorm(100, mean = 0, sd = 1)
+ech <- c(ech, mean(ech))
+
+#exo5 loi normale et qi
+1 - pnorm(115, mean = 100, sd = 12.5)
+qnorm(0.90, mean = 100, sd = 12.5)
+1-pnorm(145,mean=100,sd=12.5)
+P145 <- pnorm(145, mean = 100, sd = 12.5,
+              lower.tail = FALSE)
+
+P140 <- pnorm(140, mean = 100, sd = 12.5,
+              lower.tail = FALSE)
+
+P145 / P140
+
+#exo6 loi_de_student
+curve(dt(x, df = 5),
+      from = -5,
+      to = 5,
+      n = 1000,
+      lwd = 3,
+      xlab = "t",
+      ylab = "f(t)",
+      main = "Loi de Student t(5)")
+curve(pt(x, df = 5),
+      from = -5,
+      to = 5,
+      n = 1000,
+      lwd = 3,
+      xlab = "t",
+      ylab = "F(t)",
+      main = "Fonction de répartition de t(5)")
+pt(0, df = 5)
+pt(0.2, df = 5)
+ech1 <- rt(100, df = 5)
+ech2 <- rt(100, df = 5)
+
+#Exo7
+
+data("women", package = "datasets")
+women
+barplot(women$weight,
+        xlab = "Femmes",
+        ylab = "Poids (lb)",
+        main = "Poids des femmes")
+barplot(women$height,
+        xlab = "Femmes",
+        ylab = "Taille (inches)",
+        main = "Taille des femmes")
+hist(women$weight,col="burlywood")
+hist(women$height,col="gray")
+mean(women$weight)
+sd(women$weight)
+quantile(women$weight)
+mean(women$height)
+sd(women$height)
+quantile(women$height)
